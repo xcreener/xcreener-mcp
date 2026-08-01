@@ -4,7 +4,8 @@
   "display_name": "XCREENER",
   "version": "0.1.0",
   "icon": "icon.png",
-  "description": "XQL screener tools — validate, explain, and run queries against live market data.",
+  "description": "Scans Crypto, Forex, Indices, Commodities, and Metals to spot breakouts, momentum, and key levels in seconds — built for your first trade and your AI agent.",
+  "long_description": "XCREENER scans Crypto, Forex, Indices, Commodities, and Metals simultaneously, so you don't have to check charts one at a time. It's built for beginner traders through ready-made screeners as well as for developers and AI agents, who can express custom conditions in XQL. This extension brings that straight into Claude: ask in plain English, and it validates, explains, or runs the XQL query against live market data for you.",
   "author": {
     "name": "XCREENER",
     "url": "https://xcreener.com"
