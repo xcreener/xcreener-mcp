@@ -1,0 +1,44 @@
+{
+  "manifest_version": "0.3",
+  "name": "xcreener-mcp",
+  "display_name": "XCREENER",
+  "version": "0.1.0",
+  "description": "XQL screener tools — validate, explain, and run queries against live market data.",
+  "author": {
+    "name": "XCREENER",
+    "url": "https://xcreener.com"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "XCREENER_API_KEY": "${user_config.api_key}"
+      }
+    }
+  },
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "API Key",
+      "description": "Your XCREENER API key (xcreener.com/account/api-key)",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "tools": [
+    { "name": "xql_validate", "description": "Validate XQL syntax without executing" },
+    { "name": "xql_explain", "description": "Return an XQL query's execution plan" },
+    { "name": "xql_run", "description": "Execute an XQL query against live market data" }
+  ],
+  "prompts": [
+    {
+      "name": "translate_query",
+      "description": "Translate plain English into XQL",
+      "arguments": ["humanQuery"],
+      "text": "Using the XQL natural-language reference, translate this into a valid XQL query, then call xql_validate before xql_run: ${arguments.humanQuery}"
+    }
+  ]
+}

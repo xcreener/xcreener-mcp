@@ -1,0 +1,33 @@
+{
+  "name": "@xcreener/mcp",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Local stdio MCP bridge for XCREENER's XQL screener API — validate, explain, and run XQL queries from Claude Desktop, Cursor, Windsurf, or any stdio MCP client.",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "xcreener-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup && chmod +x dist/index.js",
+    "build:mcpb": "npm run build && node scripts/build-mcpb.mjs",
+    "dev": "tsup --watch",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@anthropic-ai/mcpb": "^2.1.2",
+    "@modelcontextprotocol/sdk": "~1.29.0",
+    "@types/node": "^20.11.24",
+    "eslint": "^10.8.0",
+    "tsup": "^8.3.5",
+    "typescript": "5.5.4",
+    "typescript-eslint": "^8.65.0",
+    "zod": "^4.0.14"
+  }
+}
