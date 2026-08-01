@@ -3,6 +3,7 @@
   "name": "xcreener-mcp",
   "display_name": "XCREENER",
   "version": "0.1.0",
+  "icon": "icon.png",
   "description": "XQL screener tools — validate, explain, and run queries against live market data.",
   "author": {
     "name": "XCREENER",

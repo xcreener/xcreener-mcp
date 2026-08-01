@@ -12,6 +12,7 @@ rmSync(path.join(packageRoot, "dist-mcpb"), { recursive: true, force: true });
 mkdirSync(path.join(stagingDir, "server"), { recursive: true });
 
 copyFileSync(path.join(packageRoot, "mcpb", "manifest.json"), path.join(stagingDir, "manifest.json"));
+copyFileSync(path.join(packageRoot, "mcpb", "icon.png"), path.join(stagingDir, "icon.png"));
 copyFileSync(builtServer, path.join(stagingDir, "server", "index.js"));
 
 execFileSync("mcpb", ["pack", stagingDir, outputFile], { stdio: "inherit" });
