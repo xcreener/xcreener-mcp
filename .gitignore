@@ -1,0 +1,16 @@
+# dependencies
+node_modules
+
+# build outputs
+dist
+dist-mcpb
+
+# turborepo cache/logs
+.turbo
+
+# editor/OS
+.DS_Store
+
+# env
+.env
+.env.local
