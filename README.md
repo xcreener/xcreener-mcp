@@ -72,11 +72,14 @@ Under the hood, the assistant reads the `xql://nl-reference` resource, translate
 
 > **You:** check all markets and see which instruments are oversold at the moment
 >
-> **XCREENER:** - xql_run (MCP)(query: "market = \"CRYPTO\"\ntimeframe = h1\ncolumns = [rsi(14)]\nsort = rsi(14) asc\nrsi(14) < 30")
-> **XCREENER:** - xql_run (MCP)(query: "market = \"FOREX\"\ntimeframe = h1\ncolumns = [rsi(14)]\nsort = rsi(14) asc\nrsi(14) < 30")
-> **XCREENER:** - xql_run (MCP)(query: "market = \"INDICES\"\ntimeframe = h1\ncolumns = [rsi(14)]\nsort = rsi(14) asc\nrsi(14) < 30")
-> **XCREENER:** - xql_run (MCP)(query: "market = \"METALS\"\ntimeframe = h1\ncolumns = [rsi(14)]\nsort = rsi(14) asc\nrsi(14) < 30")
-> **XCREENER:** - xql_run (MCP)(query: "market = \"COMMODITIES\"\ntimeframe = h1\ncolumns = [rsi(14)]\nsort = rsi(14) asc\nrsi(14) < 30")
+> **XCREENER runs** (same query per market — `CRYPTO`, `FOREX`, `INDICES`, `METALS`, `COMMODITIES`):
+> ```xql
+> market = "CRYPTO"
+> timeframe = h1
+> columns = [rsi(14)]
+> sort = rsi(14) asc
+> rsi(14) < 30
+> ```
 > **XCREENER:** Oversold (RSI(14) < 30, hourly) across all markets:
 >
 > | Market      | Symbol   | RSI(14) |
@@ -93,7 +96,15 @@ Under the hood, the assistant reads the `xql://nl-reference` resource, translate
 
 > **You:** can you give me updates on how the metals are doing?
 >
-> **XCREENER:** - xql_run (MCP)(query: "market = \"METALS\"\ntimeframe = h1\nlet uptrend = close > sma(50)\ncolumns = [close, roc(1), rsi(14), uptrend]\nsort = roc(1) desc\nclose > 0")
+> **XCREENER runs:**
+> ```xql
+> market = "METALS"
+> timeframe = h1
+> let uptrend = close > sma(50)
+> columns = [close, roc(1), rsi(14), uptrend]
+> sort = roc(1) desc
+> close > 0
+> ```
 > **XCREENER:** Metals snapshot, hourly:
 >
 > | Symbol            | Close    | 1h ROC | RSI(14) | Trend (vs SMA50) |
@@ -108,7 +119,14 @@ Under the hood, the assistant reads the `xql://nl-reference` resource, translate
 
 > **You:** which currency is the weakest and strongest?
 >
-> **XCREENER** - xql_run (MCP)(query: "market = \"FOREX\"\ntimeframe = h1\ncolumns = [close, roc(1)]\nsort = roc(1) desc\nclose > 0")
+> **XCREENER runs:**
+> ```xql
+> market = "FOREX"
+> timeframe = h1
+> columns = [close, roc(1)]
+> sort = roc(1) desc
+> close > 0
+> ```
 > **XCREENER:** Based on the 1h ROC across all 28 pairs (aggregating each currency's average move against the other seven):
 >
 > | Rank          | Currency | Avg 1h Strength |
@@ -124,7 +142,14 @@ Under the hood, the assistant reads the `xql://nl-reference` resource, translate
 
 > **You:** NZD looks like the strongest currency this week — which pair should I long based on that, and what stop-loss/take-profit levels make sense?
 >
-> **XCREENER:** - xql_run (MCP)(query: "market = \"FOREX\"\ntimeframe = h1\nsymbols = [\"NZDUSD\"]\ncolumns = [close, atr(14), sma(50), highest(high, 20), lowest(low, 20), w::lowest(low, 52), rsi(14)]\nclose > 0")
+> **XCREENER runs:**
+> ```xql
+> market = "FOREX"
+> timeframe = h1
+> symbols = ["NZDUSD"]
+> columns = [close, atr(14), sma(50), highest(high, 20), lowest(low, 20), w::lowest(low, 52), rsi(14)]
+> close > 0
+> ```
 > **XCREENER:** **Idea: Long NZDUSD** — the cleanest multi-timeframe confluence: NZD is the #2 strongest currency of the week, daily is non-conflicting, and hourly shows an uptrend (close 0.5881 > SMA(50) 0.5846) with bullish-but-not-overbought momentum (RSI(14) 60.8).
 >
 > |           | Level   | Rationale                                           |
