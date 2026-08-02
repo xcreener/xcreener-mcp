@@ -1,5 +1,6 @@
 const BASE_URL = "https://api.xcreener.com";
 
+/** Mirrors apps/api's XqlErrorBody shape structurally — not imported, since this package has no @xcreener/xql dependency. */
 export type XqlErrorBody = {
   type: "syntax" | "plan";
   message: string;
@@ -10,8 +11,7 @@ export type ToolErrorBody =
   | XqlErrorBody
   | { type: "auth" | "rate_limited" | "server" | "network"; message: string };
 
-export const REFERENCE_HINT =
-  "See the xql_nl_reference resource (xql://nl-reference) for correct syntax before retrying.";
+export const REFERENCE_HINT = "Call the xql_nl_reference tool for correct syntax before retrying.";
 
 export function textResult(text: string) {
   return { content: [{ type: "text" as const, text }] };
@@ -59,6 +59,7 @@ async function mapErrorResponse(response: Response): Promise<ToolErrorBody> {
   return { type: "server", message };
 }
 
+/** Proxies a raw XQL query to a POST /xql/* endpoint, relaying success bodies unmodified and mapping failures onto the bridge's error taxonomy (see specs/mcp-desktop-bridge). */
 export async function proxyQuery(path: string, query: string, apiKey: string) {
   let response: Response;
   try {
@@ -82,6 +83,7 @@ export async function proxyQuery(path: string, query: string, apiKey: string) {
 
 let cachedNlReference: string | null = null;
 
+/** Fetches GET /xql/nl-reference at most once per process, caching the result for reuse by both the resource and the prompt. */
 export async function getNlReference(apiKey: string): Promise<string> {
   if (cachedNlReference !== null) {
     return cachedNlReference;

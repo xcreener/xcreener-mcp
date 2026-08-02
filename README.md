@@ -11,7 +11,7 @@ Local stdio MCP bridge for XCREENER's XQL screener API — validate, explain, an
 
 ## What this MCP server does
 
-This package is the local stdio bridge to XCREENER's XQL API specifically. It exposes `xql_validate`, `xql_explain`, and `xql_run` as MCP tools, so any stdio MCP client can check and execute XQL screens against live market data without you writing any HTTP glue code.
+This package is the local stdio bridge to XCREENER's XQL API specifically. It exposes `xql_validate`, `xql_explain`, `xql_run`, and `xql_nl_reference` as MCP tools, so any stdio MCP client can check and execute XQL screens against live market data without you writing any HTTP glue code.
 
 ## Installation
 
@@ -54,19 +54,18 @@ Then point your client at `node dist/index.js` with `XCREENER_API_KEY` set in it
 
 The key is checked lazily — an invalid or missing key won't stop the server from starting, it'll just surface as an `auth` error the first time a tool is called.
 
-## Available tools, resources, and prompts
+## Available tools
 
-| Name                 | Type     | Description                                                                                     |
-| -------------------- | -------- | ----------------------------------------------------------------------------------------------- |
-| `xql_validate`       | Tool     | Validate XQL query text by parsing and planning it, without executing it against live data.     |
-| `xql_explain`        | Tool     | Parse and plan an XQL query, returning its execution plan and a human-readable explanation.     |
-| `xql_run`            | Tool     | Parse, plan, and execute an XQL query against live market data, returning matching instruments. |
-| `xql://nl-reference` | Resource | Reference document mapping natural-language trading phrases to XQL syntax.                      |
-| `translate_query`    | Prompt   | Translates a plain-English screening request into XQL, ready to validate and run.               |
+| Name              | Type | Description                                                                                     |
+| ----------------- | ---- | ------------------------------------------------------------------------------------------------- |
+| `xql_validate`     | Tool | Validate XQL query text by parsing and planning it, without executing it against live data.     |
+| `xql_explain`      | Tool | Parse and plan an XQL query, returning its execution plan and a human-readable explanation.     |
+| `xql_run`          | Tool | Parse, plan, and execute an XQL query against live market data, returning matching instruments. |
+| `xql_nl_reference` | Tool | Reference document mapping natural-language trading phrases to XQL syntax.                      |
 
 ## Example session
 
-Under the hood, the assistant reads the `xql://nl-reference` resource, translates your plain-English ask into an XQL query, and calls `xql_validate`/`xql_run` — what you see is just the human-visible conversation. A few real examples:
+Under the hood, the assistant calls the `xql_nl_reference` tool, translates your plain-English ask into an XQL query, and calls `xql_validate`/`xql_run` — what you see is just the human-visible conversation. A few real examples:
 
 **Multi-market screen**
 
