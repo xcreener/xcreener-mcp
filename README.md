@@ -17,7 +17,7 @@ This package is the local stdio bridge to XCREENER's XQL API specifically. It ex
 
 ### Claude Desktop (`.mcpb`)
 
-Download the latest `xcreener.mcpb` from this repo's [Releases](https://github.com/xcreener/xcreener-mcp/releases) page and drag it into **Claude Desktop → Settings → Extensions**. You'll be prompted for your API key.
+Download the latest `xcreener.mcpb` from this repo's [Releases](https://github.com/xcreener/xcreener-mcp/releases) page, then double-click it to install — Desktop asks for your API key in a masked field as part of that same dialog. No JSON to hand-edit, no separate Node install.
 
 ### Other MCP clients (npx)
 
