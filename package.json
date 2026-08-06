@@ -1,7 +1,8 @@
 {
   "name": "@xcreener/mcp",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.2.0",
+  "mcpName": "io.github.xcreener/xcreener-mcp",
   "description": "Local stdio MCP bridge for XCREENER's XQL screener API — validate, explain, and run XQL queries from Claude Desktop, Cursor, Windsurf, or any stdio MCP client.",
   "license": "MIT",
   "publishConfig": {
