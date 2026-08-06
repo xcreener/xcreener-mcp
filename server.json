@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.xcreener/xcreener-mcp",
+  "name": "com.xcreener/xcreener-mcp",
   "description": "Local stdio MCP bridge for XCREENER's XQL screener API — validate, explain, and run queries.",
   "title": "XCREENER",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "websiteUrl": "https://xcreener.com",
   "repository": {
     "url": "https://github.com/xcreener/xcreener-mcp",
@@ -14,7 +14,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "@xcreener/mcp",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "transport": {
         "type": "stdio"
       },
