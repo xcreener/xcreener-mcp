@@ -14,3 +14,4 @@ dist-mcpb
 # env
 .env
 .env.local
+key.*
